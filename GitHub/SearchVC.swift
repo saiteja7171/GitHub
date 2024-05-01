@@ -9,21 +9,57 @@ import UIKit
 
 class SearchVC: UIViewController {
 
+    let logo                    = UIImageView()
+    let textField               = GFTextField()
+    let callToActionButton      = GFButton(backgroundColor: .systemGreen, title: "Get Followers")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        view.backgroundColor    = .systemBackground
+        configureLogoImageView()
+        configureTextField()
+        configureCallToActionButton()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func configureLogoImageView(){
+        view.addSubview(logo)
+        logo.translatesAutoresizingMaskIntoConstraints = false
+        logo.image = UIImage(named: "gh-logo")!
+        
+        NSLayoutConstraint.activate([
+            logo.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80),
+            logo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            logo.heightAnchor.constraint(equalToConstant: 200),
+            logo.widthAnchor.constraint(equalToConstant: 200)
+        
+        ])
     }
-    */
-
+    
+    func configureTextField(){
+        view.addSubview(textField)
+        
+        NSLayoutConstraint.activate([
+            textField.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: 48),
+            textField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+            textField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+            textField.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
+    func configureCallToActionButton(){
+        view.addSubview(callToActionButton)
+        
+        NSLayoutConstraint.activate([
+            callToActionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
+            callToActionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+            callToActionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor , constant: -50),
+            callToActionButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+   
 }
